@@ -19,8 +19,7 @@ public class Server {
         int port = 8010;
         Server server = new Server();
 
-        try {
-            ServerSocket serverSocket = new ServerSocket(port);
+        try (ServerSocket serverSocket = new ServerSocket(port);) {
             serverSocket.setSoTimeout(70000);
             System.out.println("Server is listening on port " + port);
             while (true) {

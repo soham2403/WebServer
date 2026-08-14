@@ -25,8 +25,7 @@ public class Server {
         int poolSize = 10;
         Server server = new Server(poolSize);
 
-        try {
-            ServerSocket serverSocket = new ServerSocket(port);
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
             serverSocket.setSoTimeout(70000);
             System.out.println("Server is listening on port " + port);
 

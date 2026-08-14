@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -16,8 +15,7 @@ public class Client {
                 int port = 8010;
                 try {
                     InetAddress address = InetAddress.getByName("localhost");
-                    Socket socket = new Socket(address, port);
-                    try (
+                    try (Socket socket = new Socket(address, port);
                             PrintWriter toSocket = new PrintWriter(socket.getOutputStream(), true);
                             BufferedReader fromSocket = new BufferedReader(
                                     new InputStreamReader(socket.getInputStream()))) {
@@ -27,8 +25,6 @@ public class Client {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    // The socket will be closed automatically when leaving the try-with-resources
-                    // block
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
